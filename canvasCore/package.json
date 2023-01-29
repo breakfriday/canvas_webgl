@@ -1,11 +1,11 @@
 {
-  "name": "@alifd/fusion-design-pro",
+  "name": "canvasTable",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
-  "description": "chat ",
+  "description": " canvas 实现表格文档的编辑  ",
   "dependencies": {
     "create-ice": "^1.7.5"
   },
@@ -16,6 +16,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alibaba-fusion/materials/tree/master/scaffolds/fusion-design-pro"
+    "url": "git@github.com:breakfriday/canvasTable.git "
   }
 }
