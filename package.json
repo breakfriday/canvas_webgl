@@ -1,0 +1,8 @@
+{
+  "name": "canvastanle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:breakfriday/canvasTable.git",
+  "author": "breakhappy <break_happy@163.com>",
+  "license": "MIT"
+}
