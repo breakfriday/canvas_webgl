@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
 
-export interface circleProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElement> {
   x?: number;
   y?: number;
   radius?: any;
@@ -9,7 +9,8 @@ export interface circleProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  
 
   const { x, y, radius, color } = props;
   useEffect(() => {
