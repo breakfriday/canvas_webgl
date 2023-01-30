@@ -17,7 +17,8 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
 
   const { x, y, radius, color } = props;
 
-  const draw = (ctx) => {
+  const draw = (ctx, frameCount) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI);
     ctx.fillStyle = color;
@@ -27,9 +28,22 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
+
+      let frameCount = 0;
+      let animationFrameId;
+
       if (ctx) {
-        draw(ctx)
+        const render = () => {
+          frameCount++;
+          draw(ctx, frameCount);
+          animationFrameId = window.requestAnimationFrame(render);
+        };
+        render();
       }
+      return () => {
+        debugger
+        window.cancelAnimationFrame(animationFrameId);
+      };
     }
   }, [x, y, radius, color]);
 
