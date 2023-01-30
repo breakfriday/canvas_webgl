@@ -21,7 +21,7 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.beginPath();
     // r * sin(fc * k)^2
-    ctx.arc(x, y, radius * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
+    ctx.arc(x, y, radius * Math.sin(frameCount * 0.02) ** 2, 0, 2 * Math.PI);
     ctx.fillStyle = color;
     ctx.fill();
   };
