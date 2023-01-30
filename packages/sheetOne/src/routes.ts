@@ -1,11 +1,16 @@
 import { IRouterConfig, lazy } from 'ice';
 
 const Home = lazy(() => import('@/pages/Home'));
+const Demo1 = lazy(() => import('@/pages/demo1'));
 
 const routerConfig: IRouterConfig[] = [
   {
-    path: '/',
+    path: '/HOME',
     component: Home,
+  },
+  {
+    path: '/demo1',
+    component: Demo1,
   },
 ];
 
