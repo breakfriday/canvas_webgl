@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import useForwardRef from 'sheetCore/hooks/useForwardRef';
 
 
 export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElement> {
@@ -10,6 +11,8 @@ export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElemen
 
 const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const target_ref = useForwardRef(ref);
 
 
   const { x, y, radius, color } = props;
