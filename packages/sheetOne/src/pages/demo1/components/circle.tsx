@@ -16,15 +16,19 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
 
 
   const { x, y, radius, color } = props;
+
+  const draw = (ctx) => {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
   useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, 2 * Math.PI);
-        ctx.fillStyle = color;
-        ctx.fill();
+        draw(ctx)
       }
     }
   }, [x, y, radius, color]);
