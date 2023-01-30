@@ -12,7 +12,7 @@ export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElemen
 const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const target_ref = useForwardRef(ref);
+  const targetRef = useForwardRef(ref);
 
 
   const { x, y, radius, color } = props;
