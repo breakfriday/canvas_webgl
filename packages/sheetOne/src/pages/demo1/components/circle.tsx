@@ -7,6 +7,7 @@ export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElemen
   y?: number;
   radius?: any;
   color?: any;
+  delay?: number;
 }
 
 const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
@@ -42,7 +43,6 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
         render();
       }
       return () => {
-        debugger;
         window.cancelAnimationFrame(animationFrameId);
       };
     }
