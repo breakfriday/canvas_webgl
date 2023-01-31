@@ -30,7 +30,7 @@ class Canvas {
   }
 
   getContext() {
-    return this._canvas.getContext('2d');
+    return this._context;
   }
 }
 
