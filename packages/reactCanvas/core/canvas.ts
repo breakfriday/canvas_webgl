@@ -63,6 +63,15 @@ class Canvas {
   getContext() {
     return this._context;
   }
+
+  toDataURL(mimeType, quality) {
+    try {
+      const Dataurl = this._canvas?.toDataURL(mimeType, quality);
+      return Dataurl;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 
