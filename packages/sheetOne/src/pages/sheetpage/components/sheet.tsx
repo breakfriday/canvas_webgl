@@ -12,13 +12,9 @@ export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElemen
   color?: any;
 }
 
-const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
+const Sheet = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const targetRef = useForwardRef(ref);
-
-
-  const { x, y, radius, color } = props;
 
   const draw = () => {
     // first we need to create a stage
@@ -31,9 +27,6 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
     const layer = grid_layer();
     stage.add(layer);
 
-    const cellSize = 60;
-    const gridSize = 100;
-
 
     layer.draw();
   };
@@ -41,9 +34,9 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
     if (canvasRef.current) {
       draw();
     }
-  }, [x, y, radius, color]);
+  }, []);
 
 
-  return <div ref={canvasRef} width={1000} height={300} id="stage" />;
+  return <div ref={canvasRef} id="stage" />;
 });
-export default Circle;
+export default Sheet;
