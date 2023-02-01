@@ -6,15 +6,18 @@ const SheetPage = lazy(() => import('@/pages/sheetpage'));
 
 const routerConfig: IRouterConfig[] = [
   {
-    path: '/HOME',
-    component: Home,
+    path: '/',
+    exact: true,
+    component: SheetPage,
   },
   {
     path: '/demo1',
+    exact: true,
     component: Demo1,
   },
   {
     path: '/sheetPage',
+    exact: true,
     component: SheetPage,
   },
 ];
