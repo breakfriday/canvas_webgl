@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import useForwardRef from 'sheetCore/hooks/useForwardRef';
-
+import Konva from 'konva';
 
 export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElement> {
   x?: number;
@@ -9,10 +8,9 @@ export interface circleProps extends React.CanvasHTMLAttributes<HTMLCanvasElemen
   color?: any;
 }
 
+
 const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const targetRef = useForwardRef(ref);
 
 
   const { x, y, radius, color } = props;
@@ -51,3 +49,4 @@ const Circle = React.forwardRef<HTMLImageElement, circleProps>((props, ref) => {
   return <canvas ref={canvasRef} width={300} height={300} />;
 });
 export default Circle;
+
