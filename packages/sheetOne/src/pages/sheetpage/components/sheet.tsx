@@ -34,9 +34,6 @@ const Sheet = React.forwardRef<HTMLImageElement>((props) => {
 
       <div onClick={() => {
         grid.grid_layer.clear();
-        setTimeout(() => {
-          grid.render_layer();
-        }, 1000);
       }}
       >clear
       </div>
