@@ -4,6 +4,8 @@ const Home = lazy(() => import('@/pages/Home'));
 const Demo1 = lazy(() => import('@/pages/demo1'));
 const SheetPage = lazy(() => import('@/pages/sheetpage'));
 
+const SheetPage2 = lazy(() => import('@/pages/sheetPage2'));
+
 const routerConfig: IRouterConfig[] = [
   {
     path: '/',
@@ -19,6 +21,11 @@ const routerConfig: IRouterConfig[] = [
     path: '/sheetPage',
     exact: true,
     component: SheetPage,
+  },
+  {
+    path: '/sheetPage2',
+    exact: true,
+    component: SheetPage2,
   },
 ];
 
