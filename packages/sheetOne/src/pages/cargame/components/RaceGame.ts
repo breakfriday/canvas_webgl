@@ -34,10 +34,23 @@ class RacingGame {
     imageObj.src = imageUrl;
     imageObj.onload = () => {
       this.createRacetrack();
+      this.draw_circle()
       this.createRacingCar(imageObj);
 
       this.layer.draw();
     };
+  }
+
+
+  draw_circle() {
+    const circle = new Konva.Circle({
+      x: 400,
+      y: 700,
+      radius: 300,
+      stroke: 'black',
+      strokeWidth: 4,
+    });
+    this.layer.add(circle);
   }
 
   createRacingCar(imageObj) {
@@ -74,7 +87,6 @@ class RacingGame {
       strokeWidth: 5,
     });
     this.layer.add(track);
-
   }
 
   startRace() {
@@ -92,8 +104,6 @@ class RacingGame {
       }
     }, this.layer);
     this.animation.start();
-
- 
   }
 }
 
