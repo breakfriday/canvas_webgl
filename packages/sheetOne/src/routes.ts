@@ -6,6 +6,8 @@ const SheetPage = lazy(() => import('@/pages/sheetpage'));
 
 const SheetPage2 = lazy(() => import('@/pages/sheetPage2'));
 
+const RacingGame = lazy(() => import('@/pages/cargame'));
+
 const routerConfig: IRouterConfig[] = [
   {
     path: '/',
@@ -26,6 +28,11 @@ const routerConfig: IRouterConfig[] = [
     path: '/sheetPage2',
     exact: true,
     component: SheetPage2,
+  },
+  {
+    path: '/racingGame',
+    exact: true,
+    component: RacingGame,
   },
 ];
 
