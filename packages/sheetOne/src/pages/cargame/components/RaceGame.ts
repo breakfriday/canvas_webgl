@@ -33,8 +33,9 @@ class RacingGame {
     const imageObj = new Image();
     imageObj.src = imageUrl;
     imageObj.onload = () => {
-      this.createRacingCar(imageObj);
       this.createRacetrack();
+      this.createRacingCar(imageObj);
+
       this.layer.draw();
     };
   }
@@ -46,6 +47,7 @@ class RacingGame {
       y: this.stage.height() / 2 - 100,
       width: 50,
       height: 50,
+      zIndex: 20,
       offset: {
         x: 25,
         y: 25,
@@ -55,16 +57,38 @@ class RacingGame {
   }
 
   createRacetrack() {
+    // for (let i = 0; i < 1000; i += 1) {
+    //   this.trackPath.push(
+    //     50 * Math.sin(i / 50) +
+    //       50 * Math.sin(i / 100) +
+    //       50 * Math.sin(i / 200) +
+    //       window.innerWidth / 2,
+    //   );
+    //   this.trackPath.push(i);
+    // }
+
+
+    // const track = new Konva.Line({
+    //   points: this.trackPath,
+    //   stroke: 'black',
+    //   strokeWidth: 5,
+    // });
+    // this.layer.add(track);
+
     for (let i = 0; i < 1000; i += 1) {
       this.trackPath.push(
         50 * Math.sin(i / 50) +
-          50 * Math.sin(i / 100) +
-          50 * Math.sin(i / 200) +
-          window.innerWidth / 2,
+          50 * Math.cos(i / 100) +
+          window.innerWidth / 2 - 50,
+      );
+      this.trackPath.push(i);
+      this.trackPath.push(
+        50 * Math.sin(i / 50) +
+          50 * Math.cos(i / 100) +
+          window.innerWidth / 2 + 50,
       );
       this.trackPath.push(i);
     }
-
 
     const track = new Konva.Line({
       points: this.trackPath,
@@ -75,16 +99,40 @@ class RacingGame {
   }
 
   startRace() {
+    // let x = 0;
+    // this.animation = new Konva.Animation((frame) => {
+    //   x += 1;
+    //   const nextX = this.trackPath[x * 2];
+    //   const nextY = this.trackPath[x * 2 + 1];
+    //   this.carImage.setX(nextX);
+    //   this.carImage.setY(nextY);
+
+    //   // prevent the car from going off the track
+    //   if (x * 2 >= this.trackPath.length) {
+    //     this.animation.stop();
+    //   }
+    // }, this.layer);
+    // this.animation.start();
+
     let x = 0;
     this.animation = new Konva.Animation((frame) => {
       x += 1;
-      const nextX = this.trackPath[x * 2];
-      const nextY = this.trackPath[x * 2 + 1];
-      this.carImage.setX(nextX);
-      this.carImage.setY(nextY);
+      const nextX1 = this.trackPath[x * 4];
+      const nextY1 = this.trackPath[x * 4 + 1];
+      const nextX2 = this.trackPath[x * 4 + 2];
+      const nextY2 = this.trackPath[x * 4 + 3];
+
+      // update car position based on which curve it is on
+      if (this.carImage.getX() === nextX1) {
+        this.carImage.setX(nextX2);
+        this.carImage.setY(nextY2);
+      } else {
+        this.carImage.setX(nextX1);
+        this.carImage.setY(nextY1);
+      }
 
       // prevent the car from going off the track
-      if (x * 2 >= this.trackPath.length) {
+      if (x * 4 >= this.trackPath.length) {
         this.animation.stop();
       }
     }, this.layer);
