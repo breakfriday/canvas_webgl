@@ -4,6 +4,7 @@ import RacingGame from './components/RaceGame';
 
 const Home = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  let Game = '';
 
 
   const draw = () => {
@@ -11,12 +12,8 @@ const Home = () => {
   };
   useEffect(() => {
     if (canvasRef.current) {
-      const Game = new RacingGame('stage');
+      Game = new RacingGame('stage');
       Game.loadImage('https://pic.616pic.com/ys_img/00/07/77/xOsqgV61fT.jpg');
-      setTimeout(() => {
-        Game.startRace();
-        alert(2)
-      }, 2000);
     }
   }, []);
 
@@ -25,9 +22,11 @@ const Home = () => {
     <>
       <div>
 
-        <div onClick={() => {
-
-        }}
+        <div
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            Game.startRace();
+          }}
         >start_game
         </div>
 
