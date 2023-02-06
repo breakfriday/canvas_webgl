@@ -10,6 +10,7 @@ class RacingGame {
   private carImage: any;
   private racetrack: any;
   private tween: any;
+  private trackPath = [];
 
 
   constructor(containerId) {
@@ -25,6 +26,7 @@ class RacingGame {
     this.carImage = null;
     this.racetrack = null;
     this.tween = null;
+    this.trackPath = [];
   }
 
   loadImage(imageUrl) {
@@ -53,24 +55,40 @@ class RacingGame {
   }
 
   createRacetrack() {
-    this.racetrack = new Konva.Path({
-      x: this.stage.width() / 2,
-      y: this.stage.height() / 2,
-      data: 'M -100 0 A 100 100 0 0 1 100 0 A 100 100 0 0 1 -100 0',
+    for (let i = 0; i < 1000; i += 1) {
+      this.trackPath.push(
+        50 * Math.sin(i / 50) +
+          50 * Math.sin(i / 100) +
+          50 * Math.sin(i / 200) +
+          window.innerWidth / 2,
+      );
+      this.trackPath.push(i);
+    }
+
+
+    const track = new Konva.Line({
+      points: this.trackPath,
       stroke: 'black',
-      strokeWidth: 2,
+      strokeWidth: 5,
     });
-    this.layer.add(this.racetrack);
+    this.layer.add(track);
   }
 
   startRace() {
-    this.tween = new Konva.Tween({
-      node: this.carImage,
-      duration: 8,
-      rotation: 360,
-      easing: Konva.Easings.EaseInOut,
-    });
-    this.tween.play();
+    let x = 0;
+    this.animation = new Konva.Animation((frame) => {
+      x += 1;
+      const nextX = this.trackPath[x * 2];
+      const nextY = this.trackPath[x * 2 + 1];
+      this.carImage.setX(nextX);
+      this.carImage.setY(nextY);
+
+      // prevent the car from going off the track
+      if (x * 2 >= this.trackPath.length) {
+        this.animation.stop();
+      }
+    }, this.layer);
+    this.animation.start();
   }
 }
 

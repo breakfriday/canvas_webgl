@@ -12,7 +12,11 @@ const Home = () => {
   useEffect(() => {
     if (canvasRef.current) {
       const Game = new RacingGame('stage');
-      Game.loadImage('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…k93TkdBP2R81sIopH87fMID0EAg/tHeZQDVL2I80AZAf/2Q==');
+      Game.loadImage('https://pic.616pic.com/ys_img/00/07/77/xOsqgV61fT.jpg');
+      setTimeout(() => {
+        Game.startRace();
+        alert(2)
+      }, 2000);
     }
   }, []);
 
@@ -27,7 +31,7 @@ const Home = () => {
         >start_game
         </div>
 
-        <div id="stage" />
+        <div ref={canvasRef} id="stage" />
       </div>
 
     </>
