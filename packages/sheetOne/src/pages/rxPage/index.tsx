@@ -20,23 +20,40 @@ const Elevator = () => {
   return (
     <div onClick={() => {
       addTask(() => {
-        console.log('task1');
+        console.log('do task1');
         return new Promise((res) => {
           setTimeout(() => {
-            res({ data: 'request 1' });
+            res({ data: 'success request 1' });
           }, 3000);
         });
       });
       addTask(() => {
-        console.log('task2');
+        console.log('do task2');
         return new Promise((res) => {
           setTimeout(() => {
-            res({ data: 'request 2' });
-          }, 3000);
+            res({ data: 'success request 2' });
+          }, 1000);
         });
       });
-      addTask(() => new Promise((resolve) => setTimeout(() => resolve({ data: 'request 3' }), 100)));
-      addTask(() => new Promise((resolve) => setTimeout(() => resolve({ data: 'request 4' }), 1000)));
+      addTask(() => {
+        console.log('do task3');
+        return new Promise((res) => {
+          setTimeout(() => {
+            res({ data: 'success request 3' });
+          }, 100);
+        });
+      });
+
+      addTask(() => {
+        console.log('do task4');
+        return new Promise((res) => {
+          setTimeout(() => {
+            res({ data: 'success request 4' });
+          }, 1000);
+        });
+      });
+      // addTask(() => new Promise((resolve) => setTimeout(() => resolve({ data: 'request 3' }), 100)));
+      // addTask(() => new Promise((resolve) => setTimeout(() => resolve({ data: 'request 4' }), 1000)));
     }}
     >dd
 
